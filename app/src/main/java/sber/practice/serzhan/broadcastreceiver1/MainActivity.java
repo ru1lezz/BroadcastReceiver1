@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         registerReceiver(myReceiver, intentFilter, null, null);
-        Log.i("MainActivity", "registering receiver");
     }
 
     @Override
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initListeners() {
         changeStateButton.setOnClickListener((View v) -> {
-            Log.i("MainActivity", "Starting service");
             startService(MyIntentService.newIntent(MainActivity.this));
         });
     }
@@ -57,9 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private class ViewCallbackImpl implements ViewCallback {
         @Override
         public void onStatusChanged(String newStatus) {
-            Log.i("MainActivity", "Setting status on textView");
             mTextView.setText(newStatus);
-            Log.i("MAinActivity", "Status was set");
         }
     }
 }
